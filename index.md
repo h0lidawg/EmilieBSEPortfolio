@@ -47,16 +47,89 @@ For your second milestone, explain what you've worked on since your previous mil
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/CaCazFBhYKs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-For your first milestone, describe what your project is and how you plan to build it. You can include:
-- An explanation about the different components of your project and how they will all integrate together
-- Technical progress you've made so far
-- Challenges you're facing and solving in your future milestones
-- What your plan is to complete your project
+For my first milestone, I assembled the Chassi Car (the robot I will be controlling later on), wired the electronics that make it move, and completed some Arduino test code to configure the pins for future use. As a result, the robot moves! Through my code and assembly, I was able to get it moving forward and backward. This experience was extremely new to me as I've never worked with electronics OR Arduino independently, but I've already learned so much in the span of a week. 
+
+Key materials used: Arduino UNO, Chassi Car, Screwdriver, Wire Kit, Breadboard, H-Bridges
+Next steps: For my second milestone, I hope to assemble the controller powered by gestures and write its code. If I complete this in time, I hope to make a modification and also make my car look more aesthetically pleasing through concealing the wiring. 
+
+**Test Code for Milestone 1**
+```c++
+
+// this is for h-bridge 1
+const int AIA_1 = 4;
+const int AIB_1 = 5; 
+const int BIA_1 = 2;
+const int BIB_1 = 3;
+
+// this is for h-bridge 2
+const int AIA_2 = 9;
+const int AIB_2 = 8;
+const int BIA_2 = 11;
+const int BIB_2 = 10;
+
+void setup() {
+  // put your setup code here, to run once:
+  pinMode(AIA_1, OUTPUT);
+  pinMode(AIB_1, OUTPUT);
+
+  pinMode(BIA_1, OUTPUT);
+  pinMode(BIB_1, OUTPUT);
+
+  pinMode(AIA_2, OUTPUT);
+  pinMode(AIB_2, OUTPUT);
+
+  pinMode(BIA_2, OUTPUT);
+  pinMode(BIB_2, OUTPUT);
+  
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  forward();
+ delay(2000);
+ backward();
+ delay(2000);
+}
+
+void backward()
+{
+  digitalWrite(AIA_1, HIGH);
+  digitalWrite(AIA_2, LOW);
+
+  digitalWrite(AIB_1, LOW);
+  digitalWrite(AIB_2, HIGH);
+
+  digitalWrite(BIA_1, LOW);
+  digitalWrite(BIA_2, LOW);
+
+  digitalWrite(BIB_1, HIGH);
+  digitalWrite(BIB_2, HIGH);
+}
+void forward()
+{
+
+  digitalWrite(AIA_1, LOW);
+  digitalWrite(AIA_2, HIGH);
+
+  digitalWrite(AIB_1, HIGH);
+  digitalWrite(AIB_2, LOW);
+
+  digitalWrite(BIA_1, HIGH);
+  digitalWrite(BIA_2, HIGH);
+
+  digitalWrite(BIB_1, LOW);
+  digitalWrite(BIB_2, LOW);
+
+}
+
+
+```
+
 
 # Schematics 
 Here's where you'll put images of your schematics. [Tinkercad](https://www.tinkercad.com/blog/official-guide-to-tinkercad-circuits) and [Fritzing](https://fritzing.org/learning/) are both great resoruces to create professional schematic diagrams, though BSE recommends Tinkercad becuase it can be done easily and for free in the browser. 
 
-# Code
+# Final Code
 Here's where you'll put your code. The syntax below places it into a block of code. Follow the guide [here]([url](https://www.markdownguide.org/extended-syntax/)) to learn how to customize it to your project needs. 
 
 ```c++

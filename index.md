@@ -45,7 +45,7 @@ For your second milestone, explain what you've worked on since your previous mil
 
 **Don't forget to replace the text below with the embedding for your milestone video. Go to Youtube, click Share -> Embed, and copy and paste the code to replace what's below.**
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/CaCazFBhYKs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://youtu.be/mYbODG_Db3c?si=KjQjXsF762GKQ_CV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 For my first milestone, I assembled the Chassi Car (the robot I will be controlling later on), wired the electronics that make it move, and completed some Arduino test code to configure the pins for future use. As a result, the robot moves! Through my code and assembly, I was able to get it moving forward and backward. This experience was extremely new to me as I've never worked with electronics OR Arduino independently, but I've already learned so much in the span of a week. 
 

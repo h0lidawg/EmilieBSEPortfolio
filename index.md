@@ -49,8 +49,11 @@ For your second milestone, explain what you've worked on since your previous mil
 
 For my first milestone, I assembled the Chassi Car (the robot I will be controlling later on), wired the electronics that make it move, and completed some Arduino test code to configure the pins for future use. As a result, the robot moves! Through my code and assembly, I was able to get it moving forward and backward. This experience was extremely new to me as I've never worked with electronics OR Arduino independently, but I've already learned so much in the span of a week. 
 
-Key materials used: Arduino UNO, Chassi Car, Screwdriver, Wire Kit, Breadboard, H-Bridges
-Next steps: For my second milestone, I hope to assemble the controller powered by gestures and write its code. If I complete this in time, I hope to make a modification and also make my car look more aesthetically pleasing through concealing the wiring. 
+*Key materials used:* Arduino UNO, Chassi Car, Screwdriver, Wire Kit, Breadboard, H-Bridges
+
+*Challenges*: It was difficult to get my test code working as I didn't configure my pins effectively, resulting in one of my wheels moving in the wrong direction with every method call. Some debugging fixed the problem though, and it was interesting to see how hardware and software interact!
+
+*Next steps:* For my second milestone, I hope to assemble the controller powered by gestures and write its code. If I complete this in time, I hope to make a modification and also make my car look more aesthetically pleasing through concealing the wiring. 
 
 **Test Code for Milestone 1**
 ```c++

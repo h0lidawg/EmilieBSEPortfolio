@@ -1,11 +1,5 @@
 # Gesture Controlled Robot
-Replace this text with a brief description (2-3 sentences) of your project. This description should draw the reader in and make them interested in what you've built. You can include what the biggest challenges, takeaways, and triumphs from completing the project were. As you complete your portfolio, remember your audience is less familiar than you are with all that your project entails!
-
-You should comment out all portions of your portfolio that you have not completed yet, as well as any instructions:
-```HTML 
-<!--- This is an HTML comment in Markdown -->
-<!--- Anything between these symbols will not render on the published site -->
-```
+The Gesture Controlled Robot is a robot that is controlled by a wearable controller using Bluetooth. Like the name suggests, an accelerometer on the wearable device is able to detect a user's hand gestures, allowing the user to control the car without even touching it! I had a great time working on this project-- it was all solderless and powered by Arduino. 
 
 | **Engineer** | **School** | **Area of Interest** | **Grade** |
 |:--:|:--:|:--:|:--:|
@@ -13,33 +7,21 @@ You should comment out all portions of your portfolio that you have not complete
 
 **Replace the BlueStamp logo below with an image of yourself and your completed project. Follow the guide [here](https://tomcam.github.io/least-github-pages/adding-images-github-pages-site.html) if you need help.**
 
-![Headstone Image](logo.svg)
-  
 # Final Milestone
 
-**Don't forget to replace the text below with the embedding for your milestone video. Go to Youtube, click Share -> Embed, and copy and paste the code to replace what's below.**
+<iframe width="560" height="315" src="https://www.youtube.com/embed/3dx1bezu284?si=NYBzxIwMh6Jx-Lbv" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/F7M7imOVGug" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+(insert technical description)
 
-For your final milestone, explain the outcome of your project. Key details to include are:
-- What you've accomplished since your previous milestone
-- What your biggest challenges and triumphs were at BSE
-- A summary of key topics you learned about
-- What you hope to learn in the future after everything you've learned at BSE
+*Materials Used*: Arduino Micro, Arduino IDE, Resistors, Jumper Wires, Velcro, Breadboard, HC05 Bluetooth Tranceiver Module, MPU-6050 6-Axis Accelerometer
+
+*Greatest Challenge*: As I had little to no experience with electrical engineering or Arduino experience prior to this project, pairing the Bluetooth modules together seemed to be a daunting task. It involved configuring and wiring the HC05 into place by using Arduino IDE's serial monitor. My knowledge on I2C protocol was fuzzy, I had to learn which each "AT+" command meant in the serial monitor, and I began to question if any of my wires were correctly placed in the first place. This took me about three to four hours of learning, testing, and failing. Nevertheless, when I finally power cycled my Arduinos and they began to blink synchronously (meaning the modules are paired), my heart was ever so slightly relieved. Since I had finished, I could finally work on making my product wearable. 
+
+*Highlight*: Coming up with the design for the controller was the most exciting part. As an aspiring mechanical engineer with a passion for design, I wondered how I could keep the controller minimalistic (as much I could with my resources) and comfortable. For this, I used a smaller breadboard, a piece of foam, and velcro strips. I hot glued the velcro onto the foam, stuck the breadboard's adhesive on top of the foam, putting everything together. This allows the controller to be wearable, comfortable, and also adjustable. 
+
+*Next Steps*: 
 
 
-
-# Second Milestone
-
-**Don't forget to replace the text below with the embedding for your milestone video. Go to Youtube, click Share -> Embed, and copy and paste the code to replace what's below.**
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/y3VAmNlER5Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
-For your second milestone, explain what you've worked on since your previous milestone. You can highlight:
-- Technical details of what you've accomplished and how they contribute to the final goal
-- What has been surprising about the project so far
-- Previous challenges you faced that you overcame
-- What needs to be completed before your final milestone 
 
 # First Milestone
 

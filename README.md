@@ -1,1 +1,1 @@
-This repository is a template for documenting BlueStamp Engineering projects. Users should replace this text with a description of what their project is and what their repository holds. 
+Gesture Controlled Robot- a wearable device that detects the gestures of your hand via accelerometers to move a robot forward, turn left, right, spin, etc. using bluetooth. Has adjustable acceleration and speed depending on hand commands.

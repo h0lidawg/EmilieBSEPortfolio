@@ -102,25 +102,293 @@ void forward()
 
 
 # Schematics 
-Here's where you'll put images of your schematics. [Tinkercad](https://www.tinkercad.com/blog/official-guide-to-tinkercad-circuits) and [Fritzing](https://fritzing.org/learning/) are both great resoruces to create professional schematic diagrams, though BSE recommends Tinkercad becuase it can be done easily and for free in the browser. 
-![schematic1](EmilieBSEPortfolio/Screenshot 2024-10-29 at 12.38.39 PM.png)
+Schematics are available via the GitHub page.
 
 # Final Code
-Here's where you'll put your code. The syntax below places it into a block of code. Follow the guide [here]([url](https://www.markdownguide.org/extended-syntax/)) to learn how to customize it to your project needs. 
-
+* Car Code
 ```c++
+///Code for the car
+// This is to receive data from the other Bluetooth module and read the gestures
+// The robot should move accordingly! 
+
+//watch out for AIA2 and AIB2
+
+#include <SoftwareSerial.h>
+
+#define tx 2
+#define rx 3
+
+SoftwareSerial configBt(rx, tx);
+
+//character variable for command
+char c = "";
+
+//change based on motor pins
+const int AIA_1 = 9;
+const int AIB_1 = 8;
+const int BIA_1 = 11;
+const int BIB_1 = 10;
+
+const int AIA_2 = 7;
+const int AIB_2 = 4; 
+const int BIA_2 = 6;
+const int BIB_2 = 5;
+
+void setup()
+{
+  //opens serial monitor and Bluetooth serial monitor
+  Serial.begin(38400);
+  configBt.begin(38400);
+  pinMode(tx, OUTPUT);
+  pinMode(rx, INPUT);
+
+  //initializes all motor pins as outputs
+  pinMode(AIA_1, OUTPUT);
+  pinMode(AIB_1, OUTPUT);
+  pinMode(BIB_1, OUTPUT);
+  pinMode(BIA_1, OUTPUT);
+  pinMode(AIA_2, OUTPUT);
+  pinMode(AIB_2, OUTPUT);
+  pinMode(BIB_2, OUTPUT);
+  pinMode(BIA_2, OUTPUT);
+  
+}
+
+void loop()
+{
+  //checks for Bluetooth data
+  if (configBt.available()){
+    //if available stores to command character
+    c = (char)configBt.read();
+    //prints to serial
+    Serial.println(c);
+  }
+
+  //acts based on character
+  switch(c){
+    
+    //forward case
+    case 'F':
+      forward();
+      break;
+      
+    //left case
+    case 'L':
+      left();
+      break;
+      
+    //right case
+    case 'R':
+      right();
+      break;
+      
+    //back case
+    case 'B':
+      back();
+      break;
+      
+    //default is to stop robot
+    case 'S':
+      freeze();
+    }
+}
+
+//moves robot forward 
+void forward(){
+  
+    //chages directions of motors
+    digitalWrite(AIA_1, LOW);
+  digitalWrite(AIA_2, HIGH);
+
+  digitalWrite(AIB_1, HIGH);
+  digitalWrite(AIB_2, LOW);
+
+  digitalWrite(BIA_1, LOW);
+  digitalWrite(BIA_2, LOW);
+
+  digitalWrite(BIB_1, HIGH);
+  digitalWrite(BIB_2, HIGH);
+
+  }
+
+//moves robot left
+void left(){
+
+    //changes directions of motors
+    // im guessing input b is high and input a is low
+ digitalWrite(AIA_1, HIGH); //ccw
+  digitalWrite(AIA_2, HIGH); // clockwise
+
+  digitalWrite(AIB_1, LOW); //ccw
+  digitalWrite(AIB_2, LOW); //clockwise
+
+  digitalWrite(BIA_1, LOW); //clockwise
+  digitalWrite(BIA_2, HIGH);
+
+  digitalWrite(BIB_1, HIGH); //clockwise
+  digitalWrite(BIB_2, LOW);
+
+  }
+
+//moves robot right
+void right(){
+
+    //changes directions of motors
+    // im guessing motor a is high and then b is low
+    digitalWrite(AIA_1, LOW); // set to clockwise
+  digitalWrite(AIA_2, LOW);
+
+  digitalWrite(AIB_1, HIGH); // set to clockwise
+  digitalWrite(AIB_2, HIGH);
+
+  digitalWrite(BIA_1, HIGH);
+  digitalWrite(BIA_2, LOW); // set to clockwise
+
+  digitalWrite(BIB_1, LOW); 
+  digitalWrite(BIB_2, HIGH); // set to clockwise
+
+    /* digitalWrite(in1, HIGH);
+    digitalWrite(in2, LOW);
+    digitalWrite(in3, HIGH);
+    digitalWrite(in4, LOW); */
+
+
+  }
+
+//moves robot backwards
+void back(){
+
+    //changes directions of motors
+    digitalWrite(AIA_1, HIGH);
+  digitalWrite(AIA_2, LOW);
+
+  digitalWrite(AIB_1, LOW);
+  digitalWrite(AIB_2, HIGH);
+
+  digitalWrite(BIA_1, HIGH);
+  digitalWrite(BIA_2, HIGH);
+
+  digitalWrite(BIB_1, LOW);
+  digitalWrite(BIB_2, LOW);
+
+    
+
+  }
+
+//stops robot
+void freeze(){
+
+    //changes directions of motors
+    digitalWrite(AIA_1, LOW);
+    digitalWrite(AIA_2, LOW);
+
+    digitalWrite(AIB_1, LOW);
+    digitalWrite(AIB_2, LOW);
+
+    digitalWrite(BIA_1, LOW);
+    digitalWrite(BIA_2, LOW);
+
+    digitalWrite(BIB_1, LOW);
+    digitalWrite(BIB_2, LOW);
+
+  }
+
+```
+* Controller Code
+```c++
+#include <Wire.h>
+
+#define MPU6050_ADDRESS 0x68
+
+int16_t accelerometerX, accelerometerY, accelerometerZ;
+
+void setup()
+{
+  Wire.begin();
+  Serial1.begin(38400);
+
+  // Initialize MPU6050
+  Wire.beginTransmission(MPU6050_ADDRESS);
+  Wire.write(0x6B);  // PWR_MGMT_1 register
+  Wire.write(0);     // set to zero (wakes up the MPU6050)
+  Wire.endTransmission(true);
+
+  delay(100); // Delay to allow MPU6050 to stabilize
+}
+
+void loop()
+{
+  readAccelerometerData();
+  determineGesture();
+  delay(700);
+}
+
+void readAccelerometerData()
+{
+  Wire.beginTransmission(MPU6050_ADDRESS);
+  Wire.write(0x3B);  // starting with register 0x3B (ACCEL_XOUT_H)
+  Wire.endTransmission(false);
+  Wire.requestFrom(MPU6050_ADDRESS, 6, true);  // request a total of 6 registers
+
+  // read accelerometer data
+  accelerometerX = Wire.read() << 8 | Wire.read();
+  accelerometerY = Wire.read() << 8 | Wire.read();
+  accelerometerZ = Wire.read() << 8 | Wire.read();
+}
+
+void determineGesture()
+{
+  if (accelerometerY >= 6700) { // should be L
+    Serial1.write('R');
+    Serial.println('R');
+  }
+  else if (accelerometerY <= -4200) { // should be R
+    Serial1.write('L');
+    Serial.println('L');
+  }
+  else if (accelerometerX <= -3450) { // should be B
+    Serial1.write('B');
+    Serial.println('B');
+  }
+  else if (accelerometerX >= 3450) { // should be F
+    Serial1.write('F');
+    Serial.println('F');
+  }
+  else {
+    Serial1.write('S');
+     Serial.println('S');
+  }
+}
+```
+* Bluetooth Setup
+```c++
+//Code for Arduino Uno Bluetooth Connection
+#include <SoftwareSerial.h>
+
+#define tx 3
+#define rx 2
+
+SoftwareSerial configBt(rx, tx);
+long tm, t, d;
+
 void setup() {
-  // put your setup code here, to run once:
-  Serial.begin(9600);
-  Serial.println("Hello World!");
+  //Put my setup code here, to run once:
+  Serial.begin(38400);
+  configBt.begin(38400); // Corrected object name to configBt
+  pinMode(tx, OUTPUT);
+  pinMode(rx, INPUT);
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-
+  if (configBt.available()) {
+    Serial.print((char)configBt.read());
+  }
+  if (Serial.available()) {
+    configBt.write(Serial.read());
+  }
 }
-```
 
+```
 |
 
 

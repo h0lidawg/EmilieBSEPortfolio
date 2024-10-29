@@ -106,6 +106,7 @@ Schematics are available via the GitHub page.
 
 # Final Code
 * Car Code
+
 ```c++
 ///Code for the car
 // This is to receive data from the other Bluetooth module and read the gestures
@@ -295,6 +296,8 @@ void freeze(){
 
 ```
 * Controller Code
+
+
 ```c++
 #include <Wire.h>
 
